@@ -1,0 +1,242 @@
+# 名称: MihomoPro高大全 V5
+# 日期: 2025 年 4 月 12 日
+# 注意：在proxy-providers加入您的机场订阅链接（锚点区结束后面）
+
+############################################## - ⚓️ 锚点区开始 - ##############################################
+# 锚点 - 远程订阅组
+PProviders: &PProviders {type: http, interval: 86400, health-check: {enable: true, url: 'https://cp.cloudflare.com/generate_204', interval: 300}, filter: '^(?!.*(群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author))'}
+# 锚点 - 筛选组 
+FilterUS: &FilterUS '^(?=.*(?i)(美|🇺🇸|US|USA|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD))(?!.*(排除1|排除2|5x)).*$'
+FilterCA: &FilterCA '^(?=.*(?i)(加拿大|🇨🇦|CA|CANADA|Canada))(?!.*(排除1|排除2|5x)).*$'
+FilterJP: &FilterJP '^(?=.*(?i)(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK))(?!.*(排除1|排除2|5x)).*$'
+FilterHK: &FilterHK '^(?=.*(?i)(港|🇭🇰|HK|Hong|HKG))(?!.*(排除1|排除2|5x)).*$'
+FilterSG: &FilterSG '^(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|XSP))(?!.*(排除1|排除2|5x)).*$'
+FilterTW: &FilterTW '^(?=.*(?i)(台|🇼🇸|🇹🇼|TW|tai|TPE|TSA|KHH))(?!.*(排除1|排除2|5x)).*$'
+FilterEU: &FilterEU '^(?=.*(?i)(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU))(?!.*(排除1|排除2|5x)).*$'
+FilterOther: &FilterOther '^(?!.*(直连|Pass|美|加拿大|港|坡|台|新|日|韩|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇭🇰|🇼🇸|🇹🇼|🇸🇬|🇯🇵|🇰🇷|🇺🇸|🇨🇦|🇬🇧|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|HK|TW|SG|JP|KR|US|CA|GB|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|HKG|TPE|TSA|KHH|SIN|XSP|NRT|HND|KIX|CTS|FUK|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|LHR|LGW))'
+FilterAll: &FilterAll '^(?!.*(直连|Pass|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author))'
+# 锚点 - 策略组
+UrlTest: &UrlTest {type: url-test, interval: 60, tolerance: 20, lazy: true, url: 'https://cp.cloudflare.com/generate_204', disable-udp: false, timeout: 2000, max-failed-times: 3, hidden: true, include-all: true, proxies: [REJECT]}
+FallBack: &FallBack {type: fallback, interval: 30, lazy: true, url: 'https://cp.cloudflare.com/generate_204', disable-udp: false, timeout: 2000, max-failed-times: 3, hidden: false}
+LoadBalanceCH: &LoadBalanceCH {type: load-balance, interval: 30, lazy: true, url: 'https://cp.cloudflare.com/generate_204', disable-udp: false, strategy: consistent-hashing, timeout: 2000, max-failed-times: 3, hidden: true, include-all: true}
+LoadBalanceCR: &LoadBalanceCR {type: load-balance, interval: 30, lazy: true, url: 'https://cp.cloudflare.com/generate_204', disable-udp: false, strategy: round-robin, timeout: 2000, max-failed-times: 3, hidden: true, include-all: true}
+
+# 锚点 - 选择组 
+SelectFB: &SelectFB {type: select, proxies: [故障转移, 美国策略, 加拿大策略, 日本策略, 冷门自选, 全球自动, 链式代理, 全球直连, Pass]}
+SelectUS: &SelectUS {type: select, proxies: [美国策略, 故障转移, 加拿大策略, 日本策略, 冷门自选, 全球自动, 链式代理, 全球直连, Pass]}
+SelectCA: &SelectCA {type: select, proxies: [加拿大策略, 故障转移, 美国策略, 日本策略, 冷门自选, 全球自动, 链式代理, 全球直连, Pass]}
+SelectJP: &SelectJP {type: select, proxies: [日本策略, 故障转移, 美国策略, 加拿大策略, 冷门自选, 全球自动, 链式代理, 全球直连, Pass]}
+SelectCN: &SelectCN {type: select, proxies: [全球直连, 默认代理, 故障转移, 美国策略, 加拿大策略, 日本策略, Pass]}
+SelectProxy: &SelectProxy {type: select, proxies: [默认代理, 故障转移, 美国策略, 加拿大策略, 日本策略, 冷门自选, 全球自动, 链式代理, 全球直连, Pass]}
+# 锚点 - 规则集 
+DomainMrs: &DomainMrs {type: http, interval: 86400, behavior: domain, format: mrs}
+DomainText: &DomainText {type: http, interval: 86400, behavior: domain, format: text}
+domainYaml: &domainYaml {type: http, interval: 86400, behavior: domain, format: yaml}
+IPcidrMrs: &IPcidrMrs {type: http, interval: 86400, behavior: ipcidr, format: mrs}
+IPcidrText: &IPcidrText {type: http, interval: 86400, behavior: ipcidr, format: text}
+ClassicalText: &ClassicalText {type: http, interval: 86400, behavior: classical, format: text}
+ClassicalYaml: &ClassicalYaml {type: http, interval: 86400, behavior: classical, format: yaml}
+############################################## - ⚓️ 锚点区结束 - ############################################## 
+
+# 远程订阅组
+# 注意：请提供您的机场订阅链接，每个链接一行，并为每个机场命名，末尾的[A]为每个节点添加机场名称前缀，可自定义
+proxy-providers:
+  机场A: {<<: *PProviders, url: '机场订阅地址', override: {additional-prefix: '[A] '}}
+  机场B: {<<: *PProviders, url: '机场订阅地址', override: {additional-prefix: '[B] '}}
+
+# 全局配置
+port: 7890
+socks-port: 7891
+mixed-port: 7892
+redir-port: 7893
+tproxy-port: 7894
+unified-delay: true
+tcp-concurrent: true
+find-process-mode: 'off'
+global-client-fingerprint: chrome
+allow-lan: true
+bind-address: '*'
+mode: rule
+log-level: warning
+ipv6: true
+udp: true
+keep-alive-idle: 600
+keep-alive-interval: 15
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+external-controller: 0.0.0.0:9090
+external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
+external-ui: ui
+external-ui-name: zashboard
+secret: 123456
+
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain: ['Mijia Cloud', '+.push.apple.com', '+.wechat.com', '+.qpic.cn', '+.qq.com', '+.wechatapp.com', '+.vivox.com', '+.oray.com', '+.sunlogin.net'] # 忽略嗅探
+
+tun:
+  enable: true
+  stack: mixed
+  dns-hijack: [any:53]
+
+dns:
+  enable: true
+  ipv6: true
+  respect-rules: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  default-nameserver: ['119.29.29.29', '180.184.1.1', '223.5.5.5']
+  proxy-server-nameserver: ['https://dns.google/dns-query', 'https://dns.cloudflare.com/dns-query', 'https://223.5.5.5/dns-query']
+  nameserver: ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query']
+  fake-ip-filter: ['*.lan', '*.localdomain', '*.example', '*.invalid', '*.localhost', '*.test', '*.local', '*.home.arpa', 'seeson.ddns.net', 'seeson.dynv6.net', 'time.*.com', 'time.*.gov', 'time.*.edu.cn', 'time.*.apple.com', 'time-ios.apple.com', 'time1.*.com', 'time2.*.com', 'time3.*.com', 'time4.*.com', 'time5.*.com', 'time6.*.com', 'time7.*.com', 'ntp.*.com', 'ntp1.*.com', 'ntp2.*.com', 'ntp3.*.com', 'ntp4.*.com', 'ntp5.*.com', 'ntp6.*.com', 'ntp7.*.com', '*.time.edu.cn', '*.ntp.org.cn', '+.pool.ntp.org', 'time1.cloud.tencent.com', 'music.163.com', '*.music.163.com', '*.126.net', 'musicapi.taihe.com', 'music.taihe.com', 'songsearch.kugou.com', 'trackercdn.kugou.com', '*.kuwo.cn', 'api-jooxtt.sanook.com', 'api.joox.com', 'joox.com', 'y.qq.com', '*.y.qq.com', 'streamoc.music.tc.qq.com', 'mobileoc.music.tc.qq.com', 'isure.stream.qqmusic.qq.com', 'dl.stream.qqmusic.qq.com', 'aqqmusic.tc.qq.com', 'amobile.music.tc.qq.com', '*.xiami.com', '*.music.migu.cn', 'music.migu.cn', '+.msftconnecttest.com', '+.msftncsi.com', 'localhost.ptlogin2.qq.com', 'localhost.sec.qq.com', '+.qq.com', '+.tencent.com', '+.srv.nintendo.net', '*.n.n.srv.nintendo.net', '+.cdn.nintendo.net', '+.stun.playstation.net', 'xbox.*.*.microsoft.com', '*.*.xboxlive.com', 'xbox.*.microsoft.com', 'xnotify.xboxlive.com', '+.battlenet.com.cn', '+.wotgame.cn', '+.wggames.cn', '+.wowsgame.cn', '+.wargaming.net', 'proxy.golang.org', 'stun.*.*', 'stun.*.*.*', '+.stun.*.*', '+.stun.*.*.*', '+.stun.*.*.*.*', '+.stun.*.*.*.*.*', 'heartbeat.belkin.com', '*.linksys.com', '*.linksyssmartwifi.com', '*.router.asus.com', 'mesu.apple.com', 'swscan.apple.com', 'swquery.apple.com', 'swdownload.apple.com', 'swcdn.apple.com', 'swdist.apple.com', 'lens.l.google.com', 'stun.l.google.com', 'na.b.g-tun.com', '+.nflxvideo.net', '*.square-enix.com', '*.finalfantasyxiv.com', '*.ffxiv.com', '*.ff14.sdo.com', 'ff.dorado.sdo.com', '*.mcdn.bilivideo.cn', '+.media.dssott.com', 'shark007.net', 'Mijia Cloud', '+.cmbchina.com', '+.cmbimg.com', 'local.adguard.org', '+.sandai.net', '+.n0808.com', '+.uu.163.com', 'ps.res.netease.com', '+.pub.3gppnetwork.org', 'geosite:category-games', 'geosite:apple-cn']
+
+# 本地自建节点组
+proxies:
+  - {name: 全球直连, type: direct, udp: true}
+  - {name: Pass, type: direct, udp: true, ip-version: ipv4-prefer}
+
+
+# 策略组 
+proxy-groups:
+  - {name: 默认代理,   <<: *SelectFB, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Static.png}
+  - {name: 手动代理,   <<: *SelectProxy, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Proxy.png}
+  - {name: 解锁服务,  <<: *SelectCA, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Unlock.png}
+  - {name: 即时通讯,     <<: *SelectProxy, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Telegram_X.png.png}
+  - {name: 社交媒体,     <<: *SelectProxy, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/PBS.png}
+  #Coding
+  - {name: GitHub,    <<: *SelectUS, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
+  - {name: Gemini,    <<: *SelectUS, include-all: true, filter: *FilterAll, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
+  - {name: ChatGPT,    <<: *SelectCA, include-all: true, filter: *FilterAll, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
+  - {name: Copilot,    <<: *SelectCA, include-all: true, filter: *FilterAll, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
+  - {name: AI服务,    <<: *SelectUS, include-all: true, filter: *FilterAll, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
+  #媒体服务
+  - {name: TikTok,      <<: *SelectProxy, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/YouTube.png} 
+  - {name: YouTube,     <<: *SelectProxy, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/YouTube.png}
+  - {name: NetFlix,     <<: *SelectCA, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Netflix.png}
+  - {name: HBO,         <<: *SelectUS, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Netflix.png}
+  - {name: AppleTV+,    <<: *SelectCA, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Netflix.png}
+  - {name: DisneyPlus,  <<: *SelectCA, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Netflix.png}
+  - {name: PrimeVideo,  <<: *SelectCA, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Netflix.png}
+  - {name: Emby,        <<: *SelectCN, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Emby.png}
+  - {name: DMM,         <<: *SelectJP, icon: https://git.imee.me/https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/DMM.png}
+  - {name: Spotify,     <<: *SelectProxy, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/YouTube.png}
+  - {name: Bahamut,     <<: *SelectProxy, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/YouTube.png}
+  - {name: 国外媒体,  <<: *SelectProxy, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/ForeignMedia.png}
+  - {name: Shopify,  <<: *SelectCA, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/ForeignMedia.png}
+  - {name: 国外电商,  <<: *SelectProxy, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/ForeignMedia.png}
+  - {name: 网速测试,  <<: *SelectCN, include-all: true, filter: *FilterAll, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Speedtest.png}
+  # 公司
+  - {name: 微软服务,  <<: *SelectCN, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
+  - {name: 谷歌服务,  <<: *SelectProxy, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png}
+  - {name: 谷歌FCM,  <<: *SelectProxy, icon: https://git.imee.me/https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Google.png}
+  - {name: 苹果服务,  <<: *SelectCN, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Apple.png}
+  - {name: 游戏平台,  <<: *SelectCN, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png}
+  - {name: Steam,     <<: *SelectCN, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png}
+  # 地区策略
+  - {name: 美国策略,   type: select, proxies: [美国自动, 美国均衡-散列, 美国均衡-轮询], include-all: true, filter: *FilterUS, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png}
+  - {name: 加拿大策略, type: select, proxies: [加拿大自动, 加拿大均衡-散列, 加拿大均衡-轮询], include-all: true, filter: *FilterCA, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Canada.png}
+  - {name: 日本策略,   type: select, proxies: [日本自动, 日本均衡-散列, 日本均衡-轮询], include-all: true, filter: *FilterJP, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Japan.png}
+   # 其他策略
+  - {name: 故障转移,  <<: *FallBack, proxies: [美国策略, 加拿大策略, 日本策略, 全球自动, 冷门自选, 全球直连], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/ULB.png}
+  - {name: 链式代理,  type: relay, proxies: [中转机, 落地机], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/TIDAL_1.png}
+  - {name: 中转机,    type: select, proxies: [美国策略, 加拿大策略, 日本策略, 冷门自选, 全球自动], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Rocket.png}
+  - {name: 落地机,    type: select, include-all: true, filter: *FilterAll, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Domestic.png}
+  - {name: 直通网站,  type: select, proxies: [全球直连, 默认代理, 故障转移, 美国策略, 加拿大策略, 日本策略, Pass], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/China.png}
+  - {name: 国外网站,   <<: *SelectProxy, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png}
+  - {name: 全球自动,   <<: *UrlTest, include-all: true, filter: *FilterAll, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Clubhouse.png}
+  - {name: 冷门自选,   type: select, include-all: true, filter: *FilterOther, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Europe_Map.png}
+  - {name: 抖快书定位, type: select, proxies: [全球直连, 美国策略, 加拿大策略, 日本策略], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Null_Nation.png}
+  - {name: 常用端口,   <<: *SelectProxy, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Airport.png}
+  - {name: 漏网之鱼,   type: select, proxies: [全球直连, 默认代理], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png}
+  # 自动测速
+  - {name: 美国自动,        <<: *UrlTest, filter: *FilterUS, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
+  - {name: 加拿大自动,      <<: *UrlTest, filter: *FilterCA, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
+  - {name: 日本自动,        <<: *UrlTest, filter: *FilterJP, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
+  # 负载均衡-散列
+  - {name: 美国均衡-散列,   <<: *LoadBalanceCH, filter: *FilterUS, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
+  - {name: 加拿大均衡-散列, <<: *LoadBalanceCH, filter: *FilterCA, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
+  - {name: 日本均衡-散列,   <<: *LoadBalanceCH, filter: *FilterJP, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
+  # 负载均衡-轮询
+  - {name: 美国均衡-轮询,   <<: *LoadBalanceCR, filter: *FilterUS, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
+  - {name: 加拿大均衡-轮询, <<: *LoadBalanceCR, filter: *FilterCA, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
+  - {name: 日本均衡-轮询,   <<: *LoadBalanceCR, filter: *FilterJP, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
+
+# 远程规则集
+rule-providers: 
+  download:                  {<<: *ClassicalYaml, url: https://git.imee.me/https://github.com/666OS/YYDS/raw/main/mihomo/rules/download.yaml}
+  location_ip:               {<<: *ClassicalYaml, url: https://git.imee.me/https://github.com/666OS/YYDS/raw/main/mihomo/rules/location_ip.yaml}
+  XPTV:                      {<<: *ClassicalYaml, url: https://git.imee.me/https://github.com/666OS/YYDS/raw/main/mihomo/rules/XPTV.yaml}
+  speedtest:                 {<<: *ClassicalYaml, url: https://git.imee.me/https://github.com/666OS/YYDS/raw/main/mihomo/rules/speedtest.yaml}
+  emby:                      {<<: *ClassicalText, url: https://git.imee.me/https://github.com/666OS/YYDS/raw/main/mihomo/rules/emby.list}
+  # IP规则集
+  
+# 路由
+rules:
+  - DOMAIN-SUFFIX,hddolby.com,Pass
+  - GEOSITE,private,全球直连
+  - GEOIP,private,全球直连,no-resolve
+  - RULE-SET,Custom_Proxy,手动代理
+  - RULE-SET,Custom_Direct,全球直连
+  - RULE-SET,Custom_Unlock,解锁服务
+  - RULE-SET,Direct,全球直连
+  - RULE-SET,XPTV,全球直连
+  - RULE-SET,location_ip,抖快书定位
+  - GEOSITE,google-cn,全球直连
+  - GEOSITE,category-games@cn,全球直连
+  - RULE-SET,Steam_CDN,全球直连
+  - RULE-SET,Game_Download_CDN,全球直连
+  - GEOSITE,category-public-tracker,全球直连
+  - RULE-SET,PrivateTracker,全球直连
+  - RULE-SET,WeChat,全球直连
+  - GEOSITE,category-communication,即时通讯
+  - GEOSITE,category-social-media-!cn,社交媒体
+  - GEOSITE,google-gemini,Gemini
+  - GEOSITE,openai,ChatGPT
+  - RULE-SET,Copilot,Copilot
+  - GEOSITE,category-ai-!cn,AI服务
+  - GEOSITE,github,GitHub
+  - RULE-SET,Speedtest,测速工具
+  - GEOSITE,youtube,YouTube
+  - GEOSITE,apple-tvplus,AppleTV+
+  - GEOSITE,apple,苹果服务
+  - GEOSITE,microsoft,微软服务
+  - GEOSITE,googlefcm,谷歌FCM
+  - GEOSITE,google,谷歌服务
+  - GEOSITE,tiktok,TikTok
+  - GEOSITE,netflix,Netflix
+  - GEOSITE,disney,DisneyPlus
+  - GEOSITE,hbo,HBO
+  - GEOSITE,primevideo,PrimeVideo
+  - RULE-SET,Emby,Emby
+  - RULE-SET,dmm,DMM
+  - GEOSITE,spotify,Spotify
+  - GEOSITE,bahamut,Bahamut
+  - RULE-SET,paypal@cn,直通网站
+  - RULE-SET,cloudflare-cn,直通网站
+  - GEOSITE,steam,Steam
+  - GEOSITE,category-games,游戏平台
+  - GEOSITE,category-entertainment,国外媒体
+  - RULE-SET,Shopify,Shopify
+  - RULE-SET,paypal,国外电商
+  - GEOSITE,category-ecommerce,国外电商
+  - GEOSITE,gfw,手动选择
+  - GEOIP,telegram,即时通讯,no-resolve
+  - GEOIP,twitter,社交媒体,no-resolve
+  - GEOIP,facebook,社交媒体,no-resolve
+  - GEOIP,google,谷歌服务,no-resolve
+  - GEOIP,netflix,Netflix,no-resolve
+  - GEOSITE,cn,全球直连
+  - GEOIP,cn,全球直连,no-resolve
+  - RULE-SET,Custom_Port,常用端口
+  - MATCH,漏网之鱼
+
