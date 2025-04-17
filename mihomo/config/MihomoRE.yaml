@@ -108,76 +108,85 @@ proxies:
 
 # 策略组 
 proxy-groups:
-  - {name: 默认代理,   <<: *SelectFB, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Static.png}
-  - {name: 手动代理,   <<: *SelectProxy, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Proxy.png}
-  - {name: 解锁服务,  <<: *SelectCA, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Unlock.png}
-  - {name: 即时通讯,     <<: *SelectProxy, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Telegram_X.png.png}
-  - {name: 社交媒体,     <<: *SelectProxy, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/PBS.png}
+  - {name: 默认代理,   <<: *SelectFB, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Static.png}
+  - {name: 手动代理,   <<: *SelectProxy, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Proxy.png}
+  - {name: 解锁服务,  <<: *SelectCA, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Unlock.png}
+  - {name: 即时通讯,     <<: *SelectProxy, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Telegram_X.png.png}
+  - {name: 社交媒体,     <<: *SelectProxy, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/PBS.png}
   #Coding
-  - {name: GitHub,    <<: *SelectUS, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
-  - {name: Gemini,    <<: *SelectUS, include-all: true, filter: *FilterAll, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
-  - {name: ChatGPT,    <<: *SelectCA, include-all: true, filter: *FilterAll, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
-  - {name: Copilot,    <<: *SelectCA, include-all: true, filter: *FilterAll, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
-  - {name: AI服务,    <<: *SelectUS, include-all: true, filter: *FilterAll, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
+  - {name: GitHub,    <<: *SelectUS, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
+  - {name: Gemini,    <<: *SelectUS, include-all: true, filter: *FilterAll, icon: https://gh-proxy.com/https://github.com/seeson/YYDS/raw/main/mihomo/image/gemini.png}
+  - {name: ChatGPT,    <<: *SelectCA, include-all: true, filter: *FilterAll, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/ChatGPT.png}
+  - {name: Copilot,    <<: *SelectCA, include-all: true, filter: *FilterAll, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Copilot.png}
+  - {name: AI服务,    <<: *SelectUS, include-all: true, filter: *FilterAll, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
   #媒体服务
-  - {name: TikTok,      <<: *SelectProxy, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/YouTube.png} 
-  - {name: YouTube,     <<: *SelectProxy, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/YouTube.png}
-  - {name: NetFlix,     <<: *SelectCA, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Netflix.png}
-  - {name: HBO,         <<: *SelectUS, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Netflix.png}
-  - {name: AppleTV+,    <<: *SelectCA, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Netflix.png}
-  - {name: DisneyPlus,  <<: *SelectCA, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Netflix.png}
-  - {name: PrimeVideo,  <<: *SelectCA, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Netflix.png}
-  - {name: Emby,        <<: *SelectCN, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Emby.png}
-  - {name: DMM,         <<: *SelectJP, icon: https://git.imee.me/https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/DMM.png}
-  - {name: Spotify,     <<: *SelectProxy, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/YouTube.png}
-  - {name: Bahamut,     <<: *SelectProxy, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/YouTube.png}
-  - {name: 国外媒体,  <<: *SelectProxy, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/ForeignMedia.png}
-  - {name: Shopify,  <<: *SelectCA, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/ForeignMedia.png}
-  - {name: 国外电商,  <<: *SelectProxy, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/ForeignMedia.png}
-  - {name: 网速测试,  <<: *SelectCN, include-all: true, filter: *FilterAll, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Speedtest.png}
+  - {name: TikTok,      <<: *SelectProxy, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/TikTok.png} 
+  - {name: YouTube,     <<: *SelectProxy, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/YouTube.png}
+  - {name: NetFlix,     <<: *SelectCA, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Netflix.png}
+  - {name: HBO,         <<: *SelectUS, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/HBO_Max.png}
+  - {name: AppleTV+,    <<: *SelectCA, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Apple_TV_Plus.png}
+  - {name: DisneyPlus,  <<: *SelectCA, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Disney+.png}
+  - {name: PrimeVideo,  <<: *SelectCA, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Prime_Video.png}
+  - {name: Emby,        <<: *SelectCN, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Emby.png}
+  - {name: DMM,         <<: *SelectJP, icon: https://gh-proxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/DMM.png}
+  - {name: Spotify,     <<: *SelectProxy, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Spotify.png}
+  - {name: Bahamut,     <<: *SelectProxy, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Bahamut.png}
+  - {name: 国外媒体,  <<: *SelectProxy, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/ForeignMedia.png}
   # 公司
-  - {name: 微软服务,  <<: *SelectCN, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
-  - {name: 谷歌服务,  <<: *SelectProxy, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png}
-  - {name: 谷歌FCM,  <<: *SelectProxy, icon: https://git.imee.me/https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Google.png}
-  - {name: 苹果服务,  <<: *SelectCN, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Apple.png}
-  - {name: 游戏平台,  <<: *SelectCN, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png}
-  - {name: Steam,     <<: *SelectCN, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png}
+  - {name: Shopify,  <<: *SelectCA, icon: https://gh-proxy.com/https://github.com/seeson/YYDS/raw/main/mihomo/image/shopify.png}
+  - {name: 国外电商,  <<: *SelectProxy, icon: https://gh-proxy.com/https://github.com/seeson/YYDS/raw/main/mihomo/image/eshop.png}
+  - {name: 微软服务,  <<: *SelectCN, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
+  - {name: 谷歌服务,  <<: *SelectProxy, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png}
+  - {name: 谷歌FCM,  <<: *SelectProxy, icon: https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Google.png}
+  - {name: 苹果服务,  <<: *SelectCN, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Apple.png}
+  - {name: 游戏平台,  <<: *SelectCN, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png}
+  - {name: Steam,     <<: *SelectCN, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Steam.png}
   # 地区策略
-  - {name: 美国策略,   type: select, proxies: [美国自动, 美国均衡-散列, 美国均衡-轮询], include-all: true, filter: *FilterUS, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png}
-  - {name: 加拿大策略, type: select, proxies: [加拿大自动, 加拿大均衡-散列, 加拿大均衡-轮询], include-all: true, filter: *FilterCA, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Canada.png}
-  - {name: 日本策略,   type: select, proxies: [日本自动, 日本均衡-散列, 日本均衡-轮询], include-all: true, filter: *FilterJP, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Japan.png}
+  - {name: 美国策略,   type: select, proxies: [美国自动, 美国均衡-散列, 美国均衡-轮询], include-all: true, filter: *FilterUS, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png}
+  - {name: 加拿大策略, type: select, proxies: [加拿大自动, 加拿大均衡-散列, 加拿大均衡-轮询], include-all: true, filter: *FilterCA, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Canada.png}
+  - {name: 日本策略,   type: select, proxies: [日本自动, 日本均衡-散列, 日本均衡-轮询], include-all: true, filter: *FilterJP, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Japan.png}
    # 其他策略
-  - {name: 故障转移,  <<: *FallBack, proxies: [美国策略, 加拿大策略, 日本策略, 全球自动, 冷门自选, 全球直连], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/ULB.png}
-  - {name: 链式代理,  type: relay, proxies: [中转机, 落地机], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/TIDAL_1.png}
-  - {name: 中转机,    type: select, proxies: [美国策略, 加拿大策略, 日本策略, 冷门自选, 全球自动], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Rocket.png}
-  - {name: 落地机,    type: select, include-all: true, filter: *FilterAll, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Domestic.png}
-  - {name: 直通网站,  type: select, proxies: [全球直连, 默认代理, 故障转移, 美国策略, 加拿大策略, 日本策略, Pass], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/China.png}
-  - {name: 国外网站,   <<: *SelectProxy, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png}
-  - {name: 全球自动,   <<: *UrlTest, include-all: true, filter: *FilterAll, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Clubhouse.png}
-  - {name: 冷门自选,   type: select, include-all: true, filter: *FilterOther, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Europe_Map.png}
-  - {name: 抖快书定位, type: select, proxies: [全球直连, 美国策略, 加拿大策略, 日本策略], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Null_Nation.png}
-  - {name: 常用端口,   <<: *SelectProxy, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Airport.png}
-  - {name: 漏网之鱼,   type: select, proxies: [全球直连, 默认代理], icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png}
+  - {name: 故障转移,  <<: *FallBack, proxies: [美国策略, 加拿大策略, 日本策略, 全球自动, 冷门自选, 全球直连], icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/ULB.png}
+  - {name: 链式代理,  type: relay, proxies: [中转机, 落地机], icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/TIDAL_1.png}
+  - {name: 中转机,    type: select, proxies: [美国策略, 加拿大策略, 日本策略, 冷门自选, 全球自动], icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Rocket.png}
+  - {name: 落地机,    type: select, include-all: true, filter: *FilterAll, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Domestic.png}
+  - {name: 直通网站,  type: select, proxies: [全球直连, 默认代理, 故障转移, 美国策略, 加拿大策略, 日本策略, Pass], icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/China.png}
+  - {name: 国外网站,   <<: *SelectProxy, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png}
+  - {name: 全球自动,   <<: *UrlTest, include-all: true, filter: *FilterAll, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Clubhouse.png}
+  - {name: 冷门自选,   type: select, include-all: true, filter: *FilterOther, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Europe_Map.png}
+  - {name: 抖快书定位, type: select, proxies: [全球直连, 美国策略, 加拿大策略, 日本策略], icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Null_Nation.png}
+  - {name: 网速测试,  <<: *SelectCN, include-all: true, filter: *FilterAll, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Speedtest.png}
+  - {name: 常用端口,   <<: *SelectProxy, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Airport.png}
+  - {name: 漏网之鱼,   type: select, proxies: [全球直连, 默认代理], icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png}
   # 自动测速
-  - {name: 美国自动,        <<: *UrlTest, filter: *FilterUS, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
-  - {name: 加拿大自动,      <<: *UrlTest, filter: *FilterCA, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
-  - {name: 日本自动,        <<: *UrlTest, filter: *FilterJP, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
+  - {name: 美国自动,        <<: *UrlTest, filter: *FilterUS, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
+  - {name: 加拿大自动,      <<: *UrlTest, filter: *FilterCA, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
+  - {name: 日本自动,        <<: *UrlTest, filter: *FilterJP, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png}
   # 负载均衡-散列
-  - {name: 美国均衡-散列,   <<: *LoadBalanceCH, filter: *FilterUS, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
-  - {name: 加拿大均衡-散列, <<: *LoadBalanceCH, filter: *FilterCA, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
-  - {name: 日本均衡-散列,   <<: *LoadBalanceCH, filter: *FilterJP, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
+  - {name: 美国均衡-散列,   <<: *LoadBalanceCH, filter: *FilterUS, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
+  - {name: 加拿大均衡-散列, <<: *LoadBalanceCH, filter: *FilterCA, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
+  - {name: 日本均衡-散列,   <<: *LoadBalanceCH, filter: *FilterJP, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png}
   # 负载均衡-轮询
-  - {name: 美国均衡-轮询,   <<: *LoadBalanceCR, filter: *FilterUS, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
-  - {name: 加拿大均衡-轮询, <<: *LoadBalanceCR, filter: *FilterCA, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
-  - {name: 日本均衡-轮询,   <<: *LoadBalanceCR, filter: *FilterJP, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
+  - {name: 美国均衡-轮询,   <<: *LoadBalanceCR, filter: *FilterUS, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
+  - {name: 加拿大均衡-轮询, <<: *LoadBalanceCR, filter: *FilterCA, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
+  - {name: 日本均衡-轮询,   <<: *LoadBalanceCR, filter: *FilterJP, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png}
 
 # 远程规则集
 rule-providers: 
-  download:                  {<<: *ClassicalYaml, url: https://git.imee.me/https://github.com/666OS/YYDS/raw/main/mihomo/rules/download.yaml}
-  location_ip:               {<<: *ClassicalYaml, url: https://git.imee.me/https://github.com/666OS/YYDS/raw/main/mihomo/rules/location_ip.yaml}
-  XPTV:                      {<<: *ClassicalYaml, url: https://git.imee.me/https://github.com/666OS/YYDS/raw/main/mihomo/rules/XPTV.yaml}
-  speedtest:                 {<<: *ClassicalYaml, url: https://git.imee.me/https://github.com/666OS/YYDS/raw/main/mihomo/rules/speedtest.yaml}
-  emby:                      {<<: *ClassicalText, url: https://git.imee.me/https://github.com/666OS/YYDS/raw/main/mihomo/rules/emby.list}
+  Custom_Proxy:              {<<: *ClassicalText, url: https://gh-proxy.com/https://raw.githubusercontent.com/seeson/Custom_OpenClash_Rules/main/rule/Custom_Proxy.list}
+  Custom_Direct:             {<<: *ClassicalText, url: https://gh-proxy.com/https://raw.githubusercontent.com/seeson/Custom_OpenClash_Rules/main/rule/Custom_Direct.list}
+  Custom_Unlock:             {<<: *ClassicalText, url: https://gh-proxy.com/https://raw.githubusercontent.com/seeson/Custom_OpenClash_Rules/main/rule/Custom_Unlock.list}
+  Direct:                    {<<: *ClassicalText, url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Direct/Direct.list}
+  location_ip:               {<<: *ClassicalYaml, url: https://gh-proxy.com/https://github.com/666OS/YYDS/raw/main/mihomo/rules/location_ip.yaml}
+  XPTV:                      {<<: *ClassicalYaml, url: https://gh-proxy.com/https://github.com/666OS/YYDS/raw/main/mihomo/rules/XPTV.yaml}
+  Steam_CDN:                 {<<: *ClassicalText, url: https://gh-proxy.com/https://raw.githubusercontent.com/seeson/Custom_OpenClash_Rules/main/rule/Steam_CDN.list}
+  Game_Download_CDN:         {<<: *ClassicalText, url: https://gh-proxy.com/https://raw.githubusercontent.com/seeson/Custom_OpenClash_Rules/main/rule/Game_Download_CDN.list}
+  PrivateTracker:            {<<: *ClassicalText, url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PrivateTracker/PrivateTracker.list}
+  WeChat:                    {<<: *ClassicalText, url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/WeChat/WeChat.list}
+  emby:                      {<<: *ClassicalText, url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Emby/Emby.list}
+  emby:                      {<<: *ClassicalText, url: https://gh-proxy.com/https://raw.githubusercontent.com/ddgksf2013/Filter/master/Emby.list}
+  emby:                      {<<: *ClassicalText, url: https://gh-proxy.com/https://github.com/666OS/YYDS/raw/main/mihomo/rules/emby.list}
+  Custom_Port:               {<<: *ClassicalText, url: https://gh-proxy.com/https://raw.githubusercontent.com/seeson/Custom_OpenClash_Rules/main/rule/Custom_Port.list}
   # IP规则集
   
 # 路由
@@ -205,7 +214,7 @@ rules:
   - RULE-SET,Copilot,Copilot
   - GEOSITE,category-ai-!cn,AI服务
   - GEOSITE,github,GitHub
-  - RULE-SET,Speedtest,测速工具
+  - GEOSITE,category-speedtest,测速工具
   - GEOSITE,youtube,YouTube
   - GEOSITE,apple-tvplus,AppleTV+
   - GEOSITE,apple,苹果服务
@@ -218,18 +227,18 @@ rules:
   - GEOSITE,hbo,HBO
   - GEOSITE,primevideo,PrimeVideo
   - RULE-SET,Emby,Emby
-  - RULE-SET,dmm,DMM
+  - GEOSITE,dmm,DMM
   - GEOSITE,spotify,Spotify
   - GEOSITE,bahamut,Bahamut
-  - RULE-SET,paypal@cn,直通网站
-  - RULE-SET,cloudflare-cn,直通网站
+  - GEOSITE,paypal@cn,直通网站
+  - GEOSITE,cloudflare-cn,直通网站
   - GEOSITE,steam,Steam
   - GEOSITE,category-games,游戏平台
   - GEOSITE,category-entertainment,国外媒体
-  - RULE-SET,Shopify,Shopify
-  - RULE-SET,paypal,国外电商
+  - GEOSITE,shopify,Shopify
+  - GEOSITE,paypal,国外电商
   - GEOSITE,category-ecommerce,国外电商
-  - GEOSITE,gfw,手动选择
+  - GEOSITE,gfw,手动代理
   - GEOIP,telegram,即时通讯,no-resolve
   - GEOIP,twitter,社交媒体,no-resolve
   - GEOIP,facebook,社交媒体,no-resolve
