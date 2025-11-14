@@ -10,9 +10,9 @@
 # >>=====================================<<
 # 名称: OneTouch 一键连
 # 地址: https://github.com/666OS/YYDS
-# 版本: v3.6
+# 版本: v3.7
 # 作者: YYDS666
-# 更新: 2025 年 8 月 15 日
+# 更新: 2025 年 11 月 11 日
 # 频道: https://t.me/Pinched666
 # 描述: 一键连纯净版
 
@@ -116,26 +116,21 @@ dns:
   ipv6: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
+  default-nameserver:
+    - 119.29.29.29
+    - 180.184.1.1
+    - 223.5.5.5
+  nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
   fake-ip-filter:
-    - "*"
-    - "+.lan"
-    - "+.local"
-    - "+.market.xiaomi.com"
-    - "+.push.apple.com"
-    - "+.aaplimg.com"
-    - rule-set:ConnCheck
+    - rule-set:Direct
     - rule-set:Private
     - rule-set:China
-  default-nameserver:
-    - tls://223.5.5.5
-    - tls://223.6.6.6
-  nameserver:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-  nameserver-policy:  #需要国外DNS解析的规则集
-    rule-set:AI,Telegram,SocialMedia,YouTube,Spotify,Netflix,Disney,HBO,Proxy:
-      - https://dns.google/dns-query
-      - https://cloudflare-dns.com/dns-query
+    - +.miwifi.com
+    - +.docker.io
+    - +.market.xiaomi.com
+    - +.push.apple.com
 
 # ==================== 代理策略组 ====================
 proxy-groups:
@@ -158,7 +153,6 @@ proxy-groups:
 # ==================== 规则路由 ====================
 rules: 
   # 域名规则
-  - RULE-SET,ConnCheck,直接连接
   - RULE-SET,Private,直接连接
   - RULE-SET,Direct,直接连接
   - RULE-SET,AppleCN,直接连接
@@ -189,7 +183,6 @@ rules:
 BehaviorDN: &BehaviorDN {type: http, behavior: domain, format: mrs, interval: 86400}
 BehaviorIP: &BehaviorIP {type: http, behavior: ipcidr, format: mrs, interval: 86400}
 rule-providers: 
-  ConnCheck:      {<<: *BehaviorDN, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/ConnCheck.mrs}
   Private:        {<<: *BehaviorDN, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Private.mrs}
   Direct:         {<<: *BehaviorDN, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Direct.mrs}
   AppleCN:        {<<: *BehaviorDN, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/AppleCN.mrs}
