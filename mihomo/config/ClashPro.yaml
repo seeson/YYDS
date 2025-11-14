@@ -39,7 +39,7 @@ proxy-providers:
   # 优质订阅源 - 优质节点集合，使用时请修改
   家用服务商: {<<: *BaseProvider, url: '家用订阅源地址'}
   # 备用订阅源 - 次优节点集合，使用时请修改
-  备用服务商: {<<: *BaseProvider, url: '备用订阅源地址', override: {additional-prefix: '[备] '}}
+  # 备用服务商: {<<: *BaseProvider, url: '备用订阅源地址', override: {additional-prefix: '[备] '}}
 
 ## 带🔴标记的配置项为一般代理软件强制覆写的项目，需要在代理软件配置相应项目
 
