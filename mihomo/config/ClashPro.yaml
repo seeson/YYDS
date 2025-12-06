@@ -26,12 +26,12 @@ FilterOT: &FilterOT '^(?!.*(DIRECT|直接连接|Pass|美|港|坡|台|新|日|韩
 FilterAL: &FilterAL '^(?!.*(DIRECT|直接连接|Pass|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author))'
 
 # 策略组代理列表模板 - 预定义的代理节点优先级排序
-SelectFB: &SelectFB {type: select, proxies: [故障转移, 美国策略, 枫国策略, 香港策略, 狮城策略, 日本策略, 韩国策略, 台湾策略, 欧盟策略, 冷门自选, 全球手动, 链式代理, 直接连接, Pass]}
-SelectPY: &SelectPY {type: select, proxies: [默认代理, 故障转移, 美国策略, 枫国策略, 香港策略, 狮城策略, 日本策略, 韩国策略, 台湾策略, 欧盟策略, 冷门自选, 全球手动, 链式代理, 直接连接, Pass]}
-SelectCN: &SelectCN {type: select, proxies: [直接连接, 默认代理, 故障转移, 美国策略, 枫国策略, 香港策略, 狮城策略, 日本策略, 韩国策略, 台湾策略, 欧盟策略, 冷门自选, 全球手动, 链式代理, Pass]}
-SelectUS: &SelectUS {type: select, proxies: [美国策略, 默认代理, 故障转移, 枫国策略, 香港策略, 狮城策略, 日本策略, 韩国策略, 台湾策略, 欧盟策略, 冷门自选, 全球手动, 链式代理, 直接连接, Pass]}
-SelectCA: &SelectCA {type: select, proxies: [枫国策略, 默认代理, 故障转移, 美国策略, 香港策略, 狮城策略, 日本策略, 韩国策略, 台湾策略, 欧盟策略, 冷门自选, 全球手动, 链式代理, 直接连接, Pass]}
-SelectJP: &SelectJP {type: select, proxies: [日本策略, 默认代理, 故障转移, 美国策略, 枫国策略, 香港策略, 狮城策略, 韩国策略, 台湾策略, 欧盟策略, 冷门自选, 全球手动, 链式代理, 直接连接, Pass]}
+SelectFB: &SelectFB {type: select, proxies: [故障转移, 美国策略, 枫国策略, 香港策略, 狮城策略, 日本策略, 韩国策略, 台湾策略, 欧盟策略, 冷门自选, 全球手动,直接连接]}
+SelectPY: &SelectPY {type: select, proxies: [默认代理, 故障转移, 美国策略, 枫国策略, 香港策略, 狮城策略, 日本策略, 韩国策略, 台湾策略, 欧盟策略, 冷门自选, 全球手动,直接连接]}
+SelectCN: &SelectCN {type: select, proxies: [直接连接, 默认代理, 故障转移, 美国策略, 枫国策略, 香港策略, 狮城策略, 日本策略, 韩国策略, 台湾策略, 欧盟策略, 冷门自选, 全球手动, 链式代理]}
+SelectUS: &SelectUS {type: select, proxies: [美国策略, 默认代理, 故障转移, 枫国策略, 香港策略, 狮城策略, 日本策略, 韩国策略, 台湾策略, 欧盟策略, 冷门自选, 全球手动,直接连接]}
+SelectCA: &SelectCA {type: select, proxies: [枫国策略, 默认代理, 故障转移, 美国策略, 香港策略, 狮城策略, 日本策略, 韩国策略, 台湾策略, 欧盟策略, 冷门自选, 全球手动,直接连接]}
+SelectJP: &SelectJP {type: select, proxies: [日本策略, 默认代理, 故障转移, 美国策略, 枫国策略, 香港策略, 狮城策略, 韩国策略, 台湾策略, 欧盟策略, 冷门自选, 全球手动,直接连接]}
 
 # ==================== 代理提供者 ====================
 # 注意：请提供您的机场订阅链接，每个链接一行，并为每个机场命名，末尾的[优][备]为每个节点添加机场名称前缀，可自定义
@@ -141,6 +141,7 @@ dns:
   # respect-rules: false # DNS请求遵循路由规则，需先配置好 proxy-server-nameserver，否则出现鸡蛋问题
   # fakeip配置段
   fake-ip-range: 198.18.0.1/16 #🔴fakeip 的 IP 段，tun接口的默认 IPV4 地址 也使用此值作为参考
+  fake-ip-range6: fdfe:dcba:9876::1/64 #🔴fakeip 的 IPV6 段，tun接口的默认 IPV6 地址 也使用此值作为参考
   fake-ip-filter-mode: blacklist # 黑/白名单模式，黑名单下，filter内容将使用redir-host模式解析
   fake-ip-filter: # fakeip过滤，以下域名将使用redir-host模式，填入无需代理的内容
     #- geosite:category-ads-all # 广告域名
@@ -441,14 +442,11 @@ proxy-groups:
   - {name: 冷门自选,     type: select, include-all: true, filter: *FilterOT, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Europe_Map.png}
   - {name: 全球手动,     type: select, include-all: true, filter: *FilterAL, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Clubhouse.png}
   - {name: 直接连接,     type: select, proxies: [DIRECT], hidden: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Direct.png}
-  - {name: 链式代理,     type: relay, proxies: [中转机, 落地机], icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/TIDAL_1.png}
-  - {name: 中转机,       type: select, proxies: [美国策略, 枫国策略, 香港策略, 狮城策略, 日本策略, 韩国策略, 台湾策略, 欧盟策略, 冷门自选, 全球手动], icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Rocket.png}
-  - {name: 落地机,       type: select, include-all: true, filter: *FilterAL, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Domestic.png}
-  - {name: 直通网站,     type: select, proxies: [DIRECT, 默认代理, 故障转移, 美国策略, 枫国策略, 香港策略, 狮城策略, 日本策略, 韩国策略, 台湾策略, 欧盟策略, 冷门自选, 全球手动, Pass], icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/China.png}
+  - {name: 直通网站,     type: select, proxies: [DIRECT, 默认代理, 故障转移, 美国策略, 枫国策略, 香港策略, 狮城策略, 日本策略, 韩国策略, 台湾策略, 欧盟策略, 冷门自选, 全球手动], icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/China.png}
   - {name: 国外网站,     <<: *SelectPY, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png}
   - {name: 抖快书定位,   type: select, proxies: [DIRECT, 美国策略, 枫国策略, 香港策略, 狮城策略, 日本策略, 韩国策略, 台湾策略, 欧盟策略], icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Null_Nation.png}
   - {name: 测速工具,     <<: *SelectCN, include-all: true, filter: *FilterAL, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Speedtest.png}
-  # - {name: 常用端口,     <<: *SelectPY, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Airport.png}
+  - {name: 常用端口,     <<: *SelectPY, icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Airport.png}
   - {name: 漏网之鱼,     type: select, proxies: [DIRECT, 默认代理], icon: https://gh-proxy.com/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png}
 
   # ==================== 自动测速组 ====================
@@ -501,7 +499,7 @@ rule-providers:
   Steam_CDN:        {<<: *BehaviorYL, url: https://gh-proxy.com/https://raw.githubusercontent.com/seeson/Custom_OpenClash_Rules/main/rule/Steam_CDN_Classical.yaml}
   PrivateTracker:   {<<: *BehaviorYL, url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PrivateTracker/PrivateTracker_No_Resolve.yaml}
   WeChat:           {<<: *BehaviorYL, url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/WeChat/WeChat_No_Resolve.yaml}
-  # Custom_Port:      {<<: *BehaviorYL, url: https://gh-proxy.com/https://raw.githubusercontent.com/seeson/Custom_OpenClash_Rules/main/rule/Custom_Port.yaml}
+  Custom_Port:      {<<: *BehaviorYL, url: https://gh-proxy.com/https://raw.githubusercontent.com/seeson/Custom_OpenClash_Rules/main/rule/Custom_Port.yaml}
   # IP规则集
   AdvertisingIP:             {<<: *BehaviorIP, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/Advertising.mrs}
   
