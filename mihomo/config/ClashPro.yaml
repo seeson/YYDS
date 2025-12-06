@@ -316,8 +316,8 @@ dns:
   # fallback: # 过时的配置，已被 nameserver-policy 取代，使用时会产生DNS泄露
 
 ## hosts设置---------------------------------------------------------------------------------------------------
-#hosts:
-  #"mihomo.mihomo": 127.0.0.1
+hosts:
+  "mihomo.mihomo": 127.0.0.1
 
 ## 嗅探设置---------------------------------------------------------------------------------------------------
 sniffer: # 嗅探，获取SNI中的域名，使mihomo能够反解未经自己DNS的IP请求的域名，来匹配域名规则
@@ -349,6 +349,7 @@ sniffer: # 嗅探，获取SNI中的域名，使mihomo能够反解未经自己DNS
     - dlg.io.mi.com
     - "+.oray.com"
     - "+.sunlogin.net"
+    - "+.push.apple.com"
     - geosite:cn
   #skip-src-address: # 需要跳过嗅探的源地址
   #skip-dst-address: # 需要跳过嗅探的目的地址
@@ -364,9 +365,9 @@ tun:
     # - 127.0.0.1:53
     - "any:53"
     - "tcp://any:53"
-  mtu: 9000 # MTU
-  gso: true # 通用分段卸载
-  gso-max-size: 65536 # 数据块最大长度
+  #mtu: 9000 # MTU
+  #gso: true # 通用分段卸载
+  #gso-max-size: 65536 # 数据块最大长度
   exclude-package: # 安卓排除的包名
     - com.tencent.mobileqq # QQ
     - com.tencent.mm # 微信
@@ -381,7 +382,7 @@ tun:
     - com.MobileTicket # 铁路12306
     - com.chinamworld.main # 中国建设银行
     - com.jd.jrapp # 京东金融
-  auto-redirect: true # 仅Linux有效，自动配置 iptables/nftables 以重定向 TCP 连接，需要auto-route: true
+  #auto-redirect: true # 仅Linux有效，自动配置 iptables/nftables 以重定向 TCP 连接，需要auto-route: true
   #strict-route: false # 严格路由，添加防火墙规则禁止Windows使用多DNS，有效防止DNS泄露，但实测严重拖慢Windows访问速度，可能造成虚拟机运行异常
   #endpoint-independent-nat: false # 独立于端点的 NAT，性能可能下降，不建议不需要时开启
 
@@ -501,7 +502,7 @@ rule-providers:
   WeChat:           {<<: *BehaviorYL, url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/WeChat/WeChat_No_Resolve.yaml}
   Custom_Port:      {<<: *BehaviorYL, url: https://gh-proxy.com/https://raw.githubusercontent.com/seeson/Custom_OpenClash_Rules/main/rule/Custom_Port.yaml}
   # IP规则集
-  AdvertisingIP:             {<<: *BehaviorIP, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/Advertising.mrs}
+  AdvertisingIP:    {<<: *BehaviorIP, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/Advertising.mrs}
   
 # 路由
 rules:
@@ -568,5 +569,5 @@ rules:
   - GEOIP,netflix,NetFlix,no-resolve
   - GEOSITE,cn,DIRECT
   - GEOIP,cn,DIRECT,no-resolve
-  # - RULE-SET,Custom_Port,常用端口
+  - RULE-SET,Custom_Port,常用端口
   - MATCH,漏网之鱼
