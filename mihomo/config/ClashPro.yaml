@@ -362,9 +362,9 @@ tun:
   auto-route: true # 自动设置全局路由，自动将全局流量路由进 tun
   auto-detect-interface: true # 自动选择流量的出接口（默认wan口）
   dns-hijack: # dns 劫持，将匹配到的连接导入内部 dns 模块，不书写协议则默认 udp://
-    # - 127.0.0.1:53
-    - "any:53"
-    - "tcp://any:53"
+    - 127.0.0.1:53
+    # - "any:53"
+    # - "tcp://any:53"
   #mtu: 9000 # MTU
   #gso: true # 通用分段卸载
   #gso-max-size: 65536 # 数据块最大长度
